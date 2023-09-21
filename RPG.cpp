@@ -1,6 +1,7 @@
+
 #include<iostream>
 using namespace std;
-#include <string>;
+#include <string>
 
 class personagem{
  string nome;
