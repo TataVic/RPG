@@ -28,38 +28,38 @@ class Personagem{
     
 };
 class JogoRPG{
-
+    //chamadas de métodos e respostas, quanto validações
 
 };
 
-class Bruxo : public personagem{
+class Bruxo : public Personagem{
     public:
     int atck;
     //Drenagem vital - ataca e se cura e causa sangramento
 };
 
-class Mago : public personagem{
+class Mago : public Personagem{
     public:
     int atck;
     //Explosão arcana - explosão de dano
 };
 
-class Guerreiro : public personagem{
+class Guerreiro : public Personagem{
     int atck;
     //Frenesi de batalha - aumenta seus atributos de ataque e defesa
 };
 
-class Druida: public personagem{
+class Druida: public Personagem{
     int atck;
     //ataque elemental - ataque com mais chance de sangramento
 };
 
-class Clerigo: public personagem{
+class Clerigo: public Personagem{
     int atck;
     //Ascensão celestial - cura em si
 };
 
-class Ladino: public personagem{
+class Ladino: public Personagem{
     int atck;
     //Sombra mortal - dano massivo e sangramento
 };
