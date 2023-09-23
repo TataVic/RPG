@@ -120,6 +120,7 @@ private:
     //Explosão arcana - explosão de dano
 
 class Guerreiro : public Personagem{
+public:
      Guerreiro()
         : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Guerreiro
@@ -139,6 +140,7 @@ private:
 };
 
 class Druida: public Personagem{
+public:
         Druida()
         : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das novas faixas desejadas para PV, PA e PD do Druida
@@ -159,7 +161,7 @@ private:
 };
 
 class Clerigo: public Personagem{
-    public:
+public:
     Clerigo()
         : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Clerigo
@@ -180,6 +182,7 @@ private:
 };
 
 class Ladino: public Personagem{
+public:
         Ladino()
         : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Ladino
@@ -205,8 +208,30 @@ int main(){
     srand(static_cast<unsigned>(time(nullptr)));
 
         Bruxo bruxo;
+        Clerigo clerigo;
+        Ladino ladino;
+        Guerreiro guerreiro;
+        Mago mago;
+        Druida druida;
+
+
     cout << "Nome do Bruxo: " << bruxo.getNome() << endl;
     cout << "PV: " << bruxo.getPV() << ", PA: " << bruxo.getPA() << ", PD: " << bruxo.getPD() << endl;
+
+        cout << "Nome do Ladino: " << ladino.getNome() << endl;
+    cout << "PV: " << ladino.getPV() << ", PA: " << ladino.getPA() << ", PD: " << ladino.getPD() << endl;
+
+        cout << "Nome do Clerigo: " << clerigo.getNome() << endl;
+    cout << "PV: " << clerigo.getPV() << ", PA: " << clerigo.getPA() << ", PD: " << clerigo.getPD() << endl;
+
+        cout << "Nome do Guerreiro: " << guerreiro.getNome() << endl;
+    cout << "PV: " << guerreiro.getPV() << ", PA: " << guerreiro.getPA() << ", PD: " << guerreiro.getPD() << endl;
+
+        cout << "Nome do Mago: " << mago.getNome() << endl;
+    cout << "PV: " << mago.getPV() << ", PA: " << mago.getPA() << ", PD: " << mago.getPD() << endl;
+
+        cout << "Nome do Druida: " << druida.getNome() << endl;
+    cout << "PV: " << druida.getPV() << ", PA: " << druida.getPA() << ", PD: " << druida.getPD() << endl;
 
     return 0;
 }
