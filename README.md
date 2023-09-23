@@ -1,7 +1,8 @@
 # RPG - Jogo 
 ### Trio de desenvolvimento: @Bianca Netto, @Ryhan Clayver e @Tauani Vitória. 
 Jogo de RPG em C++, para a matéria de Programação Orientada a Objetos, utilizando os paradigmas de Orientação a Objetos.
-> [!NOTE] > ### Regras e Princípios
+> [!NOTE]
+> > ### Regras e Princípios
 As instruções utilizadas: 
 - O RPG simulará um combate em uma arena entre personagens. Terá (no mínimo) as classes JogoRPG,
 Personagem, e mais 6 classes distintas representando diferentes arquétipos. Por exemplo, Guerreiro(a),
