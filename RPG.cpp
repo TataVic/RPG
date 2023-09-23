@@ -25,7 +25,7 @@ class JogoRPG{
 class bruxo : public personagem{
     public:
     int atck;
-    //Drenagem vital - ataca e se cura 
+    //Drenagem vital - ataca e se cura e causa sangramento
 };
 
 class mago : public personagem{
@@ -55,7 +55,7 @@ class clerigo: personagem{
 class ladino: public personagem{
     public:
     int atck;
-    //Sombra mortal - dano massivo 
+    //Sombra mortal - dano massivo e sangramento
 };
 
 
