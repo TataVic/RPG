@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include <string>
 #include <vector>
@@ -24,32 +25,37 @@ class JogoRPG{
 class bruxo : public personagem{
     public:
     int atck;
-  
+    //Drenagem vital - ataca e se cura 
 };
 
 class mago : public personagem{
     public:
     int atck;
+    //Explosão arcana - explosão de dano
 };
 
 class guerreiro : public personagem{
     public:
     int atck;
+    //Frenesi de batalha - aumenta seus atributos de ataque e defesa
 };
 
 class druida: public personagem{
     public:
     int atck;
+    //ataque elemental - ataque com mais chance de sangramento
 };
 
 class clerigo: personagem{
     public:
     int atck;
+    //Ascensão celestial - cura em si
 };
 
-class bandido: public personagem{
+class ladino: public personagem{
     public:
     int atck;
+    //Sombra mortal - dano massivo 
 };
 
 
