@@ -69,7 +69,6 @@ public:
         // Exiba as estatísticas do combate após o fim
         exibirEstatisticasCombate(personagem1, personagem2);
     }
-
 private:
     void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
         // Método para exibir as estatísticas do combate, incluindo dano, vida restante, etc.
@@ -80,41 +79,134 @@ private:
     }
 };
 
-class Bruxo : public Personagem{
-    public:
-    int atck;
-    //Drenagem vital - ataca e se cura e causa sangramento
+class Bruxo : public Personagem {
+public:
+    Bruxo()
+        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Bruxo
+    }
+private:
+    // PV (70-90), PA (15-35) e PD (10-15)
+    int gerarPV() {
+        return rand() % (90 - 70 + 1) + 70;
+    }
+    int gerarPA() {
+        return rand() % (35 - 15 + 1) + 15;
+    }
+    int gerarPD() {
+        return rand() % (15 - 10 + 1) + 10;
+    }
 };
 
 class Mago : public Personagem{
-    public:
-    int atck;
-    //Explosão arcana - explosão de dano
+public:
+    Mago()
+        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Mago
+    }
+
+private:
+    //PV (70-90), PA (10-25) e PD (15-20)
+    int gerarPV() {
+        return rand() % (90 - 70 + 1) + 70;
+    }
+    int gerarPA() {
+        return rand() % (25 - 10 + 1) + 10;
+    }
+    int gerarPD() {
+        return rand() % (20 - 15 + 1) + 15;
+    }
 };
+    //Explosão arcana - explosão de dano
 
 class Guerreiro : public Personagem{
-    int atck;
+     Guerreiro()
+        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Guerreiro
+    }
+private:
+    //PV (80-100), PA (10-25) e PD (20-25)
+    int gerarPV() {
+        return rand() % (100 - 80 + 1) + 80;
+    }
+    int gerarPA() {
+        return rand() % (25 - 10 + 1) + 10;
+    }
+    int gerarPD() {
+        return rand() % (25 - 20 + 1) + 20;
+    }
     //Frenesi de batalha - aumenta seus atributos de ataque e defesa
 };
 
 class Druida: public Personagem{
-    int atck;
+        Druida()
+        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        // Valores aleatórios dentro das novas faixas desejadas para PV, PA e PD do Druida
+    }
+
+private:
+    //PV (90-100), PA (20-30) e PD (15-20)
+    int gerarPV() {
+        return rand() % (100 - 90 + 1) + 90;
+    }
+    int gerarPA() {
+        return rand() % (30 - 20 + 1) + 20;
+    }
+    int gerarPD() {
+        return rand() % (20 - 15 + 1) + 15;
+    }
     //ataque elemental - ataque com mais chance de sangramento
 };
 
 class Clerigo: public Personagem{
-    int atck;
+    public:
+    Clerigo()
+        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Clerigo
+    }
+
+private:
+    //PV (75-90), PA (15-20) e PD (15-23)
+    int gerarPV() {
+        return rand() % (90 - 75 + 1) + 75;
+    }
+    int gerarPA() {
+        return rand() % (20 - 15 + 1) + 15;
+    }
+    int gerarPD() {
+        return rand() % (23 - 15 + 1) + 15;
+    }
     //Ascensão celestial - cura em si
 };
 
 class Ladino: public Personagem{
-    int atck;
+        Ladino()
+        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Ladino
+    }
+
+private:
+    //PV (70-90), PA (25-35) e PD (15-25)
+    int gerarPV() {
+        return rand() % (90 - 70 + 1) + 70;
+    }
+    int gerarPA() {
+        return rand() % (35 - 25 + 1) + 25;
+    }
+    int gerarPD() {
+        return rand() % (25 - 15 + 1) + 15;
+    }
     //Sombra mortal - dano massivo e sangramento
 };
 
 
 int main(){
+
     srand(static_cast<unsigned>(time(nullptr)));
-    
+
+        Bruxo bruxo;
+    cout << "Nome do Bruxo: " << bruxo.getNome() << endl;
+    cout << "PV: " << bruxo.getPV() << ", PA: " << bruxo.getPA() << ", PD: " << bruxo.getPD() << endl;
+
     return 0;
 }
