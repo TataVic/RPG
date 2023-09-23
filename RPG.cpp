@@ -1,8 +1,14 @@
-
+/* Bianca, Ryhan e Tauani - Jogo RPG */
 #include<iostream>
 #include <string>
 #include <vector>
 using namespace std;
+/*mais seis classe distintas dos arquetipos que são derivadas do personagem
+Pontos de vida (VID).
+Pontos de ataque (ATQ).
+Pontos de defesa (DEF).
+uma lista de struct que puxa as classes personagens
+o pai vai ser o personagem e o filho vai ser o arquetipo um vetor de ponteiros*/ 
 
 class personagem{
     protected:
@@ -35,37 +41,25 @@ class mago : public personagem{
 };
 
 class guerreiro : public personagem{
-    public:
     int atck;
     //Frenesi de batalha - aumenta seus atributos de ataque e defesa
 };
 
 class druida: public personagem{
-    public:
     int atck;
     //ataque elemental - ataque com mais chance de sangramento
 };
 
-class clerigo: personagem{
-    public:
+class clerigo: public personagem{
     int atck;
-    //Ascensão celestial - cura em si e escudo
+    //Ascensão celestial - cura em si
 };
 
 class ladino: public personagem{
-    public:
     int atck;
     //Sombra mortal - dano massivo e sangramento
 };
 
-
-
-/*mais seis classe distintas dos arquetipos que são derivadas do personagem
-Pontos de vida (VID).
-Pontos de ataque (ATQ).
-Pontos de defesa (DEF).
-uma lista de struct que puxa as classes personagens
-o pai vai ser o personagem e o filho vai ser o arquetipo um vetor de ponteiros*/
 
 int main(){
 
