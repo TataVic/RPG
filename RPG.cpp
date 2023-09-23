@@ -1,45 +1,55 @@
-
 #include<iostream>
-using namespace std;
 #include <string>
+#include <vector>
+using namespace std;
 
 class personagem{
- string nome;
- int pv, pa,pd;
-  personagem **derrotados;
+    protected:
+    string nome;
+    int pv, pa,pd;
+    vector <personagem*>derrotados; 
+    //derrotados armazena o arquetipo do personagem derrotado
 
-
-
+    public:
+    personagem(const string& nome, int pv, int pa, int pd) : 
+    nome (nome), pv(pv), pa(pa), pd(pd){}
+    //const porque nome não muda e string& porque é referencia
+    
 };
-
 class JogoRPG{
 
 
 };
 
-class bruxo : personagem{
-  int atck;
+class bruxo : public personagem{
+    public:
+    int atck;
   
 };
 
-class mago : personagem{
- int atck;
+class mago : public personagem{
+    public:
+    int atck;
 };
 
-class guerreiro : personagem{
- int atck;
+class guerreiro : public personagem{
+    public:
+    int atck;
 };
 
-class druida: personagem{
- int atck;
+class druida: public personagem{
+    public:
+    int atck;
 };
 
 class clerigo: personagem{
- int atck;
+    public:
+    int atck;
 };
 
-class bandido: personagem{
- int atck;
+class bandido: public personagem{
+    public:
+    int atck;
 };
 
 
