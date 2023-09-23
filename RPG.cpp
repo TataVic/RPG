@@ -49,7 +49,7 @@ class druida: public personagem{
 class clerigo: personagem{
     public:
     int atck;
-    //Ascensão celestial - cura em si
+    //Ascensão celestial - cura em si e escudo
 };
 
 class ladino: public personagem{
