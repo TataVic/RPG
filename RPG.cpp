@@ -2,6 +2,7 @@
 #include<iostream>
 #include <string>
 #include <vector>
+#include <random>
 using namespace std;
 /*mais seis classe distintas dos arquetipos que são derivadas do personagem
 Pontos de vida (VID).
@@ -10,15 +11,18 @@ Pontos de defesa (DEF).
 uma lista de struct que puxa as classes personagens
 o pai vai ser o personagem e o filho vai ser o arquetipo um vetor de ponteiros*/ 
 
-class personagem{
+class Personagem{
     protected:
     string nome;
-    int pv, pa,pd;
-    vector <personagem*>derrotados; 
+    int pv, pa,pd; 
+    /*  pv - ponto de vida
+        pa - ponto de ataque
+        pd - ponto de defesa */
+    vector <Personagem*>derrotados; 
     //derrotados armazena o arquetipo do personagem derrotado
 
     public:
-    personagem(const string& nome, int pv, int pa, int pd) : 
+    Personagem(const string& nome, int pv, int pa, int pd) : 
     nome (nome), pv(pv), pa(pa), pd(pd){}
     //const porque nome não muda e string& porque é referencia
     
@@ -28,34 +32,34 @@ class JogoRPG{
 
 };
 
-class bruxo : public personagem{
+class Bruxo : public personagem{
     public:
     int atck;
     //Drenagem vital - ataca e se cura e causa sangramento
 };
 
-class mago : public personagem{
+class Mago : public personagem{
     public:
     int atck;
     //Explosão arcana - explosão de dano
 };
 
-class guerreiro : public personagem{
+class Guerreiro : public personagem{
     int atck;
     //Frenesi de batalha - aumenta seus atributos de ataque e defesa
 };
 
-class druida: public personagem{
+class Druida: public personagem{
     int atck;
     //ataque elemental - ataque com mais chance de sangramento
 };
 
-class clerigo: public personagem{
+class Clerigo: public personagem{
     int atck;
     //Ascensão celestial - cura em si
 };
 
-class ladino: public personagem{
+class Ladino: public personagem{
     int atck;
     //Sombra mortal - dano massivo e sangramento
 };
@@ -63,4 +67,5 @@ class ladino: public personagem{
 
 int main(){
 
+    return 0;
 }
