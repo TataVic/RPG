@@ -49,6 +49,7 @@ public:
     }
 
     void iniciarCombate(Personagem* personagem1, Personagem* personagem2) {
+        cout << "Bem-vindo ao Jogo!" << endl;
         // Método para iniciar um combate entre dois personagens
         int rounds = 0;
         while (rounds < 10) {  // Limite de 10 rounds
