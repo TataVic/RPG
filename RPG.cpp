@@ -11,12 +11,18 @@ o pai vai ser o personagem e o filho vai ser o arquetipo um vetor de ponteiros*/
 class Personagem{
     protected:
     string nome;
-    int pv, pa,pd; 
-    vector <Personagem*>derrotados; 
+    int pv, pa, pd; 
+    vector <Personagem*> derrotados; 
     //derrotados armazena o arquetipo do personagem derrotado
     
     static string gerarNomeAleatorio() {
-        const string nomes[] = {"Alice", "Bob", "Charlie", "David", "Emma", "Fiona", "George", "Hannah", "Isabel"};
+        const string nomes[] = {"Alice", "Bob", "Charlie","Pitty","Frank",
+        "David", "Emma", "Fiona", "George", "Hannah", "Isabel", "Abigail",
+        "Katarina", "Morgana", "Laila", "Qiyana", "Veno", "Max", "Rick",
+        "Josephine", "Marcu", "Harry", "Thomas", "Polly", "Ben", "Vegan", 
+        "Albert", "Oberon", "Lilith", "Thalia","Zephyr","Celestia", "Hecate",
+        "Solstice", "Branwen", "Kaelthas", "Selene", "Orion", "Persephone",
+        "Astra", "Asmodeus", "Calliope", "Elysium", "Melissandre", "Hercules"};
         return nomes[rand() % (sizeof(nomes) / sizeof(nomes[0]))];
     } // Método estático para gerar um nome aleatório
 
@@ -54,10 +60,11 @@ public:
         while (rounds < 10) {  // Limite de 10 rounds
             rounds++;
             //lógica de combate aqui
+
             // Calcular os ataques, verifique condições de vitória, etc.
 
             // Exibir o número do round
-            cout << "Round " << rounds << endl;
+            cout << "Round: " << rounds << endl;
 
             // Fim do combate após 10 rounds
             if (rounds == 10) {
