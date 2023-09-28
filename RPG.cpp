@@ -62,7 +62,28 @@ public:
             //lógica de combate aqui
 
             // Calcular os ataques, verifique condições de vitória, etc.
+              /*  int pv1=personagem1->getPV();
+        int pa1=personagem1->getPA();
+        int pd1=personagem1->getPD();
+        int pv2=personagem2->getPV();
+        int pa2=personagem2->getPA();
+        int pd2=personagem2->getPD();
+        int dano;
 
+
+        int rounds = 0;
+        while (rounds < 10) {  // Limite de 10 rounds
+            rounds++;
+            //ataque do primerio diminui perla defesa do outro oponente o resultado subtrai da vida
+            //do oponnete 1
+             dano =  pa1 - pd2;
+            if(dano > 0){
+                pv1
+            }else{
+
+            }
+           // possivel utilização do 'enquanto faz' para a troca de round entanquto 
+           //tiver os 10 rounds a cada rodada muda de lado que ataca */
             // Exibir o número do round
             cout << "Round: " << rounds << endl;
 
