@@ -44,22 +44,22 @@ class Personagem{
     int getPV(){
         return pv;
     }
-     void setPV(){
-         
+     void setPV(int PontoVida){
+         pv = PontoVida;
     }
 
     int getPA() {
         return pa;
     }
-    void setPA(){
-
+    void setPA(int PontoAtaque){
+        pa = PontoAtaque;
     }
 
     int getPD() {
         return pd;
     }
-    void setPD(){
-
+    void setPD(int PontoDefesa){
+        pd = PontoDefesa;
     }
     
 };
@@ -84,12 +84,16 @@ public:
         int pv2 = personagem2->getPV(); //ponto de vida 2
         int pa2 = personagem2->getPA(); //ponto de ataque 2
         int pd2 = personagem2->getPD(); //ponto de defesa 2
- */
-            if(personagem1->recebedano(50) <= /* valor */ ){
-                cout<< "Perca de vida do personagem: "<<personagem1.getNome1()<<endl;
-            }else{
+ */       
+    // Calcular danospersonagem1 e aplique ao método receberDano de personagem2:
+    int danospersonagem1 = personagem1->getPA() - personagem2->getPD();
+        if (danospersonagem1 > 0) {
+            personagem2->recebedano(danospersonagem1);
+            cout << "Perda de vida de " << personagem2->getNome() << ": " << danospersonagem1 << " pontos." << endl;
+        } else {
+            cout << "O ataque de " << personagem1->getNome() << " não causou dano a " << personagem2->getNome() << "." << endl;
+        }  
 
-            }
            //else if e exibir o número do round
             
             cout << "Round: " << rounds << endl;
@@ -99,7 +103,6 @@ public:
                 cout << "O combate terminou!" << endl;
                 break;
             }
-            break;
         }
 
         // Exiba as estatísticas do combate após o fim
