@@ -31,20 +31,35 @@ class Personagem{
     nome(gerarNomeAleatorio()), pv(pv), pa(pa), pd(pd){}
     //const porque nome não muda e string& porque é referencia
 
+    //metodo recebe dano e faz a subtração dos pontos de vida - Vida atual
+    void recebedano(int dano){
+        pv-=dano;
+    }
+
+
     string getNome() const {
         return nome;
     }
 
-    int getPV() const {
+    int getPV(){
         return pv;
     }
-
-    int getPA() const {
-        return pa;
+     void setPV(){
+         
     }
 
-    int getPD() const {
+    int getPA() {
+        return pa;
+    }
+    void setPA(){
+
+    }
+
+    int getPD() {
         return pd;
+    }
+    void setPD(){
+
     }
     
 };
@@ -59,32 +74,25 @@ public:
         int rounds = 0;
         while (rounds < 10) {  // Limite de 10 rounds
             rounds++;
-            //lógica de combate aqui
-
+            //ataques especiais e sangramento
             // Calcular os ataques, verifique condições de vitória, etc.
-              /*  int pv1=personagem1->getPV();
-        int pa1=personagem1->getPA();
-        int pd1=personagem1->getPD();
-        int pv2=personagem2->getPV();
-        int pa2=personagem2->getPA();
-        int pd2=personagem2->getPD();
-        int dano;
-
-
-        int rounds = 0;
-        while (rounds < 10) {  // Limite de 10 rounds
-            rounds++;
-            //ataque do primerio diminui perla defesa do outro oponente o resultado subtrai da vida
-            //do oponnete 1
-             dano =  pa1 - pd2;
-            if(dano > 0){
-                pv1
+        /* string nome1 = personagem1 -> getNome1(nome);
+        string nome2 = personagem2 -> getNome2(nome);
+        int pv1 = personagem1->getPV(); //ponto de vida 1
+        int pa1 = personagem1->getPA(); //ponto de ataque 1
+        int pd1 = personagem1->getPD(); //ponto de defesa 1
+        int pv2 = personagem2->getPV(); //ponto de vida 2
+        int pa2 = personagem2->getPA(); //ponto de ataque 2
+        int pd2 = personagem2->getPD(); //ponto de defesa 2
+ */
+          int danospersonagem1 = personagem1.GetPA()pa1 - pd2;
+            if(personagem1->recebedano(50) <= ){
+                cout<< "Perca de vida do personagem: "<<personagem1.getNome1()<<endl;
             }else{
 
             }
-           // possivel utilização do 'enquanto faz' para a troca de round entanquto 
-           //tiver os 10 rounds a cada rodada muda de lado que ataca */
-            // Exibir o número do round
+           //else if e exibir o número do round
+            
             cout << "Round: " << rounds << endl;
 
             // Fim do combate após 10 rounds
@@ -92,6 +100,7 @@ public:
                 cout << "O combate terminou!" << endl;
                 break;
             }
+            break;
         }
 
         // Exiba as estatísticas do combate após o fim
