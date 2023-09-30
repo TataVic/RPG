@@ -125,6 +125,11 @@ public:
         cout << "Estatísticas do Combate:" << endl;
         cout << personagem1->getNome() << ": PV=" << personagem1->getPV() << endl;
         cout << personagem2->getNome() << ": PV=" << personagem2->getPV() << endl;
+        if (personagem1->getPV() > personagem2->getPV()) {
+        cout << personagem1->getNome() << " ganhou!!" << endl;
+    } else {
+        cout << personagem2->getNome() << " ganhou!!" << endl;
+    }
     }
 };
 
