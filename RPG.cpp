@@ -85,8 +85,7 @@ public:
         int pa2 = personagem2->getPA(); //ponto de ataque 2
         int pd2 = personagem2->getPD(); //ponto de defesa 2
  */
-          int danospersonagem1 = personagem1.GetPA()pa1 - pd2;
-            if(personagem1->recebedano(50) <= ){
+            if(personagem1->recebedano(50) <= /* valor */ ){
                 cout<< "Perca de vida do personagem: "<<personagem1.getNome1()<<endl;
             }else{
 
