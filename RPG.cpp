@@ -162,11 +162,12 @@ if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
 
     }
    void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
-    cout << "\tEstatísticas do Combate:" << endl;
+    cout <<string(60, '-') <<endl;
+    cout << "\t\tEstatísticas do Combate:" << endl;
 
     // Configurar largura das colunas
     int larguraColuna = 30;
-
+    cout << string(60, '-') <<endl;
     // Imprimir cabeçalhos
     cout << left << setw(larguraColuna) << "Nome do Personagem";
     cout << left << setw(larguraColuna) << "Pontos de Vida (PV)";
@@ -181,8 +182,8 @@ if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
     cout << left << setw(larguraColuna) << personagem2->getNome();
     cout << left << setw(larguraColuna) << personagem2->getPV();
     cout << endl;
+    cout << "+---------------------+---------------+---------------------+" <<endl;
 
-    // ...
 }
 
 };
@@ -324,25 +325,6 @@ int main(){
     Mago mago;
     Druida druida;
 
-/* 
-    cout << "Nome do Bruxo: " << bruxo.getNome() << endl;
-    cout << "PV: " << bruxo.getPV() << ", PA: " << bruxo.getPA() << ", PD: " << bruxo.getPD() << endl;
-
-        cout << "Nome do Ladino: " << ladino.getNome() << endl;
-    cout << "PV: " << ladino.getPV() << ", PA: " << ladino.getPA() << ", PD: " << ladino.getPD() << endl;
-
-        cout << "Nome do Clerigo: " << clerigo.getNome() << endl;
-    cout << "PV: " << clerigo.getPV() << ", PA: " << clerigo.getPA() << ", PD: " << clerigo.getPD() << endl;
-
-        cout << "Nome do Guerreiro: " << guerreiro.getNome() << endl;
-    cout << "PV: " << guerreiro.getPV() << ", PA: " << guerreiro.getPA() << ", PD: " << guerreiro.getPD() << endl;
-
-        cout << "Nome do Mago: " << mago.getNome() << endl;
-    cout << "PV: " << mago.getPV() << ", PA: " << mago.getPA() << ", PD: " << mago.getPD() << endl;
-
-        cout << "Nome do Druida: " << druida.getNome() << endl;
-    cout << "PV: " << druida.getPV() << ", PA: " << druida.getPA() << ", PD: " << druida.getPD() << endl;
- */
     jogoRPG.adicionarPersonagem(&bruxo);
     jogoRPG.adicionarPersonagem(&clerigo);
     jogoRPG.adicionarPersonagem(&ladino);
