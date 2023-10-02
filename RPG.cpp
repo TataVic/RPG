@@ -1,5 +1,6 @@
 /* Bianca, Ryhan e Tauani - Jogo RPG */
 #include<iostream>
+#include<iomanip>
 #include <string>
 #include <vector>
 #include <cstdlib>  // Para as funções rand() e srand()
@@ -12,8 +13,7 @@ class Personagem{
     protected:
     string nome;
     int pv, pa, pd; 
-    vector <Personagem*> derrotados; 
-    //derrotados armazena o arquetipo do personagem derrotado
+    vector<Personagem*>derrotados; 
     
     static string gerarNomeAleatorio() {
         const string nomes[] = {"Alice", "Bob", "Charlie","Pitty","Frank",
@@ -42,45 +42,67 @@ class Personagem{
         }
     }
 
-
     string getNome() const {
         return nome;
     }
 
-    int getPV(){
+    int getPV() const{
         return pv;
     }
-     void setPV(int PontoVida){
+    void setPV(int PontoVida){
          pv = PontoVida;
     }
-
-    int getPA() {
+    int getPA() const{
         return pa;
     }
     void setPA(int PontoAtaque){
         pa = PontoAtaque;
     }
 
-    int getPD() {
+    int getPD() const{
         return pd;
     }
     void setPD(int PontoDefesa){
         pd = PontoDefesa;
     }
+    void adicionarDerrotado(Personagem* derrotado) {
+        derrotados.push_back(derrotado);
+        //armazenar os personagens derrotados
+    }
     
 };
 class JogoRPG {
+protected:
+    vector<Personagem*> personagens;
+
 public:
     JogoRPG() {
         // Construtor da classe JogoRPG
     }
 
+    // Método para adicionar personagens ao jogo
+    void adicionarPersonagem(Personagem* novoPersonagem) {
+        personagens.push_back(novoPersonagem);
+    }
+
+    // Método para listar todos os personagens no jogo
+    void listarPersonagens() {
+        cout << "Lista de Personagens para o combate:" << endl;
+        for (const Personagem* personagem : personagens) {
+            cout << "Nome: " << personagem->getNome() 
+            << ", PV: " << personagem->getPV() 
+            << ", PA: " << personagem->getPA() 
+            << ", PD: " << personagem->getPD() 
+            << endl;
+        }
+    }
+   
     void iniciarCombate(Personagem* personagem1, Personagem* personagem2) {
         
         int rounds = 0;
 
         while (rounds < 10 && personagem1->getPV() > 0 && personagem2->getPV() > 0) {
-            cout << "Round: " << rounds+1 << endl;
+            cout << "\t\nRound: " << rounds+1 << endl;
             rounds++;
 
             // Lógica para ataques e cálculo de dano
@@ -114,23 +136,55 @@ public:
                 break;
             }
         }
+/* //validação: Personagem que mais causou danos - vencedor
+if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
+    personagem2->adicionarDerrotado(personagem1);
+    cout << personagem2->getNome() << " é o vencedor!" << endl;
+} else if (personagem2->getPV() <= 0 && personagem1->getPV() > 0) {
+    personagem1->adicionarDerrotado(personagem2);
+    cout << personagem1->getNome() << " é o vencedor!" << endl;
+} else {
+    // Nenhum dos personagens foi derrotado, então compare o dano causado
+    int danoTotalPersonagem1 = personagem1->getPA() * 10; // Dano total de 10 rounds
+    int danoTotalPersonagem2 = personagem2->getPA() * 10; // Dano total de 10 rounds
+
+    if (danoTotalPersonagem1 > danoTotalPersonagem2) {
+        cout << personagem1->getNome() << " é o vencedor com mais danos causados!" <<"com ataque:"<<personagem1->getPA()<< endl;
+    } else if (danoTotalPersonagem2 > danoTotalPersonagem1) {
+        cout << personagem2->getNome() << " é o vencedor com mais danos causados!" << endl;
+    } else {
+        cout << "O combate terminou em empate, sem vencedor!" << endl;
+    }
+} */
 
         // Exiba as estatísticas do combate após o fim
         exibirEstatisticasCombate(personagem1, personagem2);
-    }
 
-    void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
-        // Método para exibir as estatísticas do combate, incluindo dano, vida restante, etc.
+    }
+   void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
+    cout << "\tEstatísticas do Combate:" << endl;
 
-        cout << "Estatísticas do Combate:" << endl;
-        cout << personagem1->getNome() << ": PV=" << personagem1->getPV() << endl;
-        cout << personagem2->getNome() << ": PV=" << personagem2->getPV() << endl;
-        if (personagem1->getPV() > personagem2->getPV()) {
-        cout << personagem1->getNome() << " ganhou!!" << endl;
-    } else {
-        cout << personagem2->getNome() << " ganhou!!" << endl;
-    }
-    }
+    // Configurar largura das colunas
+    int larguraColuna = 30;
+
+    // Imprimir cabeçalhos
+    cout << left << setw(larguraColuna) << "Nome do Personagem";
+    cout << left << setw(larguraColuna) << "Pontos de Vida (PV)";
+    cout << endl;
+
+    // Imprimir estatísticas do primeiro personagem
+    cout << left << setw(larguraColuna) << personagem1->getNome();
+    cout << left << setw(larguraColuna) << personagem1->getPV();
+    cout << endl;
+
+    // Imprimir estatísticas do segundo personagem
+    cout << left << setw(larguraColuna) << personagem2->getNome();
+    cout << left << setw(larguraColuna) << personagem2->getPV();
+    cout << endl;
+
+    // ...
+}
+
 };
 
 class Bruxo : public Personagem {
@@ -270,8 +324,7 @@ int main(){
     Mago mago;
     Druida druida;
 
-    
-
+/* 
     cout << "Nome do Bruxo: " << bruxo.getNome() << endl;
     cout << "PV: " << bruxo.getPV() << ", PA: " << bruxo.getPA() << ", PD: " << bruxo.getPD() << endl;
 
@@ -289,9 +342,20 @@ int main(){
 
         cout << "Nome do Druida: " << druida.getNome() << endl;
     cout << "PV: " << druida.getPV() << ", PA: " << druida.getPA() << ", PD: " << druida.getPD() << endl;
+ */
+    jogoRPG.adicionarPersonagem(&bruxo);
+    jogoRPG.adicionarPersonagem(&clerigo);
+    jogoRPG.adicionarPersonagem(&ladino);
+    jogoRPG.adicionarPersonagem(&guerreiro);
+    jogoRPG.adicionarPersonagem(&mago);
+    jogoRPG.adicionarPersonagem(&druida);
 
+    // Liste todos os personagens no jogo
+    jogoRPG.listarPersonagens();
 
-jogoRPG.iniciarCombate(&bruxo, &clerigo);
+    // Exemplo de iniciar um combate entre personagens
+    jogoRPG.iniciarCombate(&bruxo, &clerigo);
+;
 
     return 0;
 }
