@@ -11,7 +11,7 @@ o pai vai ser o personagem e o filho vai ser o arquetipo um vetor de ponteiros*/
 
 class Personagem{
     protected:
-    string nome;
+    string nome, classe;
     int pv, pa, pd; 
     vector<Personagem*>derrotados; 
     
@@ -27,8 +27,8 @@ class Personagem{
     } // Método estático para gerar um nome aleatório
 
     public:
-    Personagem(const string& nome, int pv, int pa, int pd) : 
-    nome(gerarNomeAleatorio()), pv(pv), pa(pa), pd(pd){}
+    Personagem(const string& nome, const string& classe, int pv, int pa, int pd) : 
+    nome(gerarNomeAleatorio()), classe(classe), pv(pv), pa(pa), pd(pd){}
     //const porque nome não muda e string& porque é referencia
 
     //metodo recebe dano e faz a subtração dos pontos de vida - Vida atual
@@ -44,6 +44,9 @@ class Personagem{
 
     string getNome() const {
         return nome;
+    }
+    string getclasse() const{
+        return classe;
     }
 
     int getPV() const{
@@ -89,7 +92,7 @@ public:
     void listarPersonagens() {
         cout << "Lista de Personagens para o combate:" << endl;
         for (const Personagem* personagem : personagens) {
-            cout << "Nome: " << personagem->getNome() 
+            cout << "Personagem: " << personagem->getNome()<<" - "<<personagem->getclasse() 
             << ", PV: " << personagem->getPV() 
             << ", PA: " << personagem->getPA() 
             << ", PD: " << personagem->getPD() 
@@ -104,6 +107,7 @@ public:
         while (rounds < 10 && personagem1->getPV() > 0 && personagem2->getPV() > 0) {
             cout << "\t\nRound: " << rounds+1 << endl;
             rounds++;
+             swap(personagem1, personagem2);
 
             // Lógica para ataques e cálculo de dano
             int dano1 = personagem1->getPA() - personagem2->getPD();
@@ -116,6 +120,7 @@ public:
             //Estatistica de dano por turno
             int danospersonagem1 = personagem1->getPA() - personagem2->getPD();
             int danospersonagem2 = personagem2->getPA() - personagem1->getPD();
+            
 
             if (danospersonagem1 > 0) {
                 personagem2->receberDano(danospersonagem1);
@@ -124,67 +129,47 @@ public:
                 cout << "O ataque de " << personagem1->getNome() << " não causou dano a " << personagem2->getNome() << "." << endl;
             }
             if (danospersonagem2 > 0) {
-                personagem2->receberDano(danospersonagem2);  // Corrigido aqui
+                personagem1->receberDano(danospersonagem1);  
                 cout << "Perda de vida de " << personagem1->getNome() << ": " << danospersonagem2 << " pontos." << endl;
             } else {
                 cout << "O ataque de " << personagem2->getNome() << " não causou dano a " << personagem1->getNome() << "." << endl;
             }
+            //relato de quantidade de vida que o personagem está
+            cout << "-------Vida restante de " << personagem1->getNome() << ": " << personagem1->getPV() << " pontos de vida." << endl;
+            cout << "-------Vida restante de " << personagem2->getNome() << ": " << personagem2->getPV() << " pontos de vida." << endl;
 
             // Fim do combate após 10 rounds
             if (rounds == 10 || personagem1->getPV()  <= 0 || personagem2->getPV() <= 0) {
-                cout << "\nO combate terminou!\n" << endl;
+                cout << "\n\t\tO combate terminou!\n" << endl;
                 break;
-
-                
-            // seria aqui //bia creio eu 
-            /* Determinar o vencedor com base no dano total causado
-             //   int danoTotalP1 = personagem1->getPA() * ( /*numero de rounds */ rounds - personagem2->getPD());
-               // int danoTotalP2 = personagem2->getPA() * (/*numero de rounds */  rounds- personagem1->getPD());  //pra isso seria necessario uma variavel contador a cada round tipo Int numeroderounds
-
-              //  if (danoTotalP1 > danoTotalP2) {
-                 //     cout << personagem1->getNome() << " venceu cansando mais danos!" << endl;
-              //  } else if (danoTotalP2 > danoTotalP1) {
-               //     cout << personagem2->getNome() << " venceu cansando mais danos!" << endl;
-              //  } else {
-                        // se o dano empatar também , ganha aleatoriamente
-                /*        if (rand() % 2 == 0) {
-                            cout << personagem1->getNome() << "venceu!" << endl;
-                        } else {
-                            cout << personagem2->getNome() << "venceu!" << endl;
-                        }
-                    }
-                }
-                    cout << "\nO combate terminou!\n" << endl;*/
-                
             }
         }
-/* //validação: Personagem que mais causou danos - vencedor
-if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
-    personagem2->adicionarDerrotado(personagem1);
-    cout << personagem2->getNome() << " é o vencedor!" << endl;
-} else if (personagem2->getPV() <= 0 && personagem1->getPV() > 0) {
-    personagem1->adicionarDerrotado(personagem2);
-    cout << personagem1->getNome() << " é o vencedor!" << endl;
-} else {
-    // Nenhum dos personagens foi derrotado, então compare o dano causado
-    int danoTotalPersonagem1 = personagem1->getPA() * 10; // Dano total de 10 rounds
-    int danoTotalPersonagem2 = personagem2->getPA() * 10; // Dano total de 10 rounds
+            //validação: Personagem que mais causou danos - vencedor
+            if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
+                personagem2->adicionarDerrotado(personagem1);
+                cout <<" \t"<< personagem1->getNome() << " venceu cansando mais danos!" << endl;
+            } else if (personagem2->getPV() <= 0 && personagem1->getPV() > 0) {
+                personagem1->adicionarDerrotado(personagem2);
+                cout <<" \t"<< personagem1->getNome() << " venceu cansando mais danos!" << endl;
+            } else { // Nenhum dos personagens foi derrotado, então compare o dano causado por round
+                int danoTotalPersonagem1 = personagem1->getPA() * rounds; // Dano total pela quantidade de round
+                int danoTotalPersonagem2 = personagem2->getPA() * rounds; // Dano total pela quantidade de round
 
-    if (danoTotalPersonagem1 > danoTotalPersonagem2) {
-        cout << personagem1->getNome() << " é o vencedor com mais danos causados!" <<"com ataque:"<<personagem1->getPA()<< endl;
-    } else if (danoTotalPersonagem2 > danoTotalPersonagem1) {
-        cout << personagem2->getNome() << " é o vencedor com mais danos causados!" << endl;
-    } else {
-        cout << "O combate terminou em empate, sem vencedor!" << endl;
-    }
-} */
+                if (danoTotalPersonagem1 > danoTotalPersonagem2) {
+                    cout <<" \t"<< personagem1->getNome() << " é o vencedor com mais danos causados!" <<"com ataque:"<<personagem1->getPA()<< endl;
+                } else if (danoTotalPersonagem2 > danoTotalPersonagem1) {
+                    cout <<" \t"<< personagem2->getNome() << " é o vencedor com mais danos causados!" << endl;
+                } else {
+                    cout <<" \t"<< "O combate terminou em empate, sem vencedor!" << endl;
+                }
+            } 
 
         // Exiba as estatísticas do combate após o fim
         exibirEstatisticasCombate(personagem1, personagem2);
 
     }
    void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
-    cout <<string(60, '-') <<endl;
+    cout << "\n"<<string(60, '-') <<endl;
     cout << "\t\tEstatísticas do Combate:" << endl;
 
     // Configurar largura das colunas
@@ -213,7 +198,7 @@ if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
 class Bruxo : public Personagem {
 public:
     Bruxo()
-        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        : Personagem(gerarNomeAleatorio(), "Bruxo", gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Bruxo
     }
 private:
@@ -232,7 +217,7 @@ private:
 class Mago : public Personagem{
 public:
     Mago()
-        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        : Personagem(gerarNomeAleatorio(), "Mago", gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Mago
     }
 
@@ -253,7 +238,7 @@ private:
 class Guerreiro : public Personagem{
 public:
      Guerreiro()
-        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        : Personagem(gerarNomeAleatorio(), "Guerreiro", gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Guerreiro
     }
 private:
@@ -273,7 +258,7 @@ private:
 class Druida: public Personagem{
 public:
         Druida()
-        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        : Personagem(gerarNomeAleatorio(), "Druida", gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das novas faixas desejadas para PV, PA e PD do Druida
     }
 
@@ -294,7 +279,7 @@ private:
 class Clerigo: public Personagem{
 public:
     Clerigo()
-        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        : Personagem(gerarNomeAleatorio(),"Clerigo", gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Clerigo
     }
 
@@ -315,7 +300,7 @@ private:
 class Ladino: public Personagem{
 public:
         Ladino()
-        : Personagem(gerarNomeAleatorio(), gerarPV(), gerarPA(), gerarPD()) {
+        : Personagem(gerarNomeAleatorio(), "Ladino", gerarPV(), gerarPA(), gerarPD()) {
         // Valores aleatórios dentro das faixas desejadas para PV, PA e PD do Ladino
     }
 
