@@ -134,6 +134,28 @@ public:
             if (rounds == 10 || personagem1->getPV()  <= 0 || personagem2->getPV() <= 0) {
                 cout << "\nO combate terminou!\n" << endl;
                 break;
+
+                
+            // seria aqui //bia creio eu 
+            /* Determinar o vencedor com base no dano total causado
+             //   int danoTotalP1 = personagem1->getPA() * ( /*numero de rounds */- personagem2->getPD());
+               // int danoTotalP2 = personagem2->getPA() * (/*numero de rounds */- personagem1->getPD());  //pra isso seria necessario uma variavel contador a cada round tipo Int numeroderounds
+
+              //  if (danoTotalP1 > danoTotalP2) {
+                 //     cout << personagem1->getNome() << " venceu cansando mais danos!" << endl;
+              //  } else if (danoTotalP2 > danoTotalP1) {
+               //     cout << personagem2->getNome() << " venceu cansando mais danos!" << endl;
+              //  } else {
+                        // se o dano empatar também , ganha aleatoriamente
+                /*        if (rand() % 2 == 0) {
+                            cout << personagem1->getNome() << "venceu!" << endl;
+                        } else {
+                            cout << personagem2->getNome() << "venceu!" << endl;
+                        }
+                    }
+                }
+                    cout << "\nO combate terminou!\n" << endl;*/
+                
             }
         }
 /* //validação: Personagem que mais causou danos - vencedor
