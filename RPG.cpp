@@ -138,8 +138,8 @@ public:
                 
             // seria aqui //bia creio eu 
             /* Determinar o vencedor com base no dano total causado
-             //   int danoTotalP1 = personagem1->getPA() * ( /*numero de rounds */- personagem2->getPD());
-               // int danoTotalP2 = personagem2->getPA() * (/*numero de rounds */- personagem1->getPD());  //pra isso seria necessario uma variavel contador a cada round tipo Int numeroderounds
+             //   int danoTotalP1 = personagem1->getPA() * ( /*numero de rounds */ rounds - personagem2->getPD());
+               // int danoTotalP2 = personagem2->getPA() * (/*numero de rounds */  rounds- personagem1->getPD());  //pra isso seria necessario uma variavel contador a cada round tipo Int numeroderounds
 
               //  if (danoTotalP1 > danoTotalP2) {
                  //     cout << personagem1->getNome() << " venceu cansando mais danos!" << endl;
