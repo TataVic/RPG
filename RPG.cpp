@@ -140,21 +140,21 @@ public:
 
         if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
             personagem2->adicionarDerrotado(personagem1);
-            cout << "\t" << personagem2->getNome() << " venceu!" << endl;
+            cout << "\t\t" << personagem2->getNome() << " venceu!" << endl;
         }
         else if (personagem2->getPV() <= 0 && personagem1->getPV() > 0) {
             personagem1->adicionarDerrotado(personagem2);
-            cout << "\t" << personagem1->getNome() << " venceu!" << endl;
+            cout << "\t\t" << personagem1->getNome() << " venceu!" << endl;
         }
         else {
             int danoTotalPersonagem1 = personagem1->getDanoTotalCausado();
             int danoTotalPersonagem2 = personagem2->getDanoTotalCausado();
 
             if (danoTotalPersonagem1 > danoTotalPersonagem2 && personagem1->getPV() == 0 && personagem2->getPV() == 0) {
-                cout << "\t" << personagem1->getNome() << " é o vencedor com mais danos causados!" << " com ataque:" << personagem1->getPA() << endl;
+                cout << "\t\t" << personagem1->getNome() << " é o vencedor com mais danos causados!" << " com ataque:" << personagem1->getPA() << endl;
             }
             else if (danoTotalPersonagem2 > danoTotalPersonagem1 && personagem1->getPV() == 0 && personagem2->getPV() == 0) {
-                cout << "\t" << personagem2->getNome() << " é o vencedor com mais danos causados!" << endl;
+                cout << "\t\t" << personagem2->getNome() << " é o vencedor com mais danos causados!" << endl;
             }
             else {
                 cout << "\t" << "O combate terminou em empate, sem vencedor!" << endl;
@@ -170,11 +170,10 @@ void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2)
     int larguraColuna = 30;
     cout << string(60, '-') << endl;
 
-    // Tabela para o Personagem 1
+// Tabela para o Personagem 1
     cout << left << setw(larguraColuna) << "Nome do Personagem 1:";
     cout << left << setw(larguraColuna) << "Arquétipo:";
     cout << endl;
-
     cout << left << setw(larguraColuna) << personagem1->getNome();
     cout << left << setw(larguraColuna) << personagem1->getClasse();
     cout << endl;
@@ -185,17 +184,15 @@ void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2)
     cout << left << setw(larguraColuna) << personagem1->getPV();
     cout << left << setw(larguraColuna) << personagem1->getPA();
     cout << endl;
-
-
-
     cout << setw(larguraColuna) << "PD:";
      cout <<  left <<setw(larguraColuna) << "Dano Total:";
     cout << endl;
     cout << left << setw(larguraColuna) << personagem1->getPD();
     cout << left << setw(larguraColuna) << personagem1->getDanoTotalCausado();
     cout << endl;
- cout << string(60, '-') << endl;
-       // Tabela para o Personagem 2 
+    cout << string(60, '-') << endl;
+
+// Tabela para o Personagem 2 
     cout << left << setw(larguraColuna) << "Nome do Personagem 2:";
     cout << left << setw(larguraColuna) << "Arquétipo:";
     cout << endl;
