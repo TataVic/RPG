@@ -12,7 +12,7 @@ o pai vai ser o personagem e o filho vai ser o arquetipo um vetor de ponteiros*/
 class Personagem{
     protected:
     string nome, classe;
-    int pv, pa, pd; 
+    int pv, pa, pd /* dt1, dt2 */; 
     vector<Personagem*>derrotados; 
     
     static string gerarNomeAleatorio() {
@@ -68,6 +68,13 @@ class Personagem{
     void setPD(int PontoDefesa){
         pd = PontoDefesa;
     }
+    /* int getDT1(){
+        return dt1;
+    }
+    int getDT2(){
+        return dt2; 
+    }    */
+    
     void adicionarDerrotado(Personagem* derrotado) {
         derrotados.push_back(derrotado);
         //armazenar os personagens derrotados
@@ -147,17 +154,20 @@ public:
             //validação: Personagem que mais causou danos - vencedor
             if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
                 personagem2->adicionarDerrotado(personagem1);
-                cout <<" \t"<< personagem1->getNome() << " venceu cansando mais danos!" << endl;
+                cout <<" \t"<< personagem2->getNome() << " venceu!" << endl;
             } else if (personagem2->getPV() <= 0 && personagem1->getPV() > 0) {
                 personagem1->adicionarDerrotado(personagem2);
-                cout <<" \t"<< personagem1->getNome() << " venceu cansando mais danos!" << endl;
+                cout <<" \t"<< personagem1->getNome() << " venceu!" << endl;
             } else { // Nenhum dos personagens foi derrotado, então compare o dano causado por round
                 int danoTotalPersonagem1 = personagem1->getPA() * rounds; // Dano total pela quantidade de round
                 int danoTotalPersonagem2 = personagem2->getPA() * rounds; // Dano total pela quantidade de round
 
-                if (danoTotalPersonagem1 > danoTotalPersonagem2) {
+/*                 personagem1->getDT1() = danoTotalPersonagem1;
+                personagem2->getDT() = danoTotalPersonagem1; */
+
+                if (danoTotalPersonagem1 > danoTotalPersonagem2 && personagem1->getPV()==0 && personagem2->getPV()==0) {
                     cout <<" \t"<< personagem1->getNome() << " é o vencedor com mais danos causados!" <<"com ataque:"<<personagem1->getPA()<< endl;
-                } else if (danoTotalPersonagem2 > danoTotalPersonagem1) {
+                } else if (danoTotalPersonagem2 > danoTotalPersonagem1 && personagem1->getPV()==0 && personagem2->getPV()==0) {
                     cout <<" \t"<< personagem2->getNome() << " é o vencedor com mais danos causados!" << endl;
                 } else {
                     cout <<" \t"<< "O combate terminou em empate, sem vencedor!" << endl;
@@ -171,24 +181,44 @@ public:
    void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
     cout << "\n"<<string(60, '-') <<endl;
     cout << "\t\tEstatísticas do Combate:" << endl;
+    /* cout << "Rounds:"<<endl; */
 
     // Configurar largura das colunas
     int larguraColuna = 30;
     cout << string(60, '-') <<endl;
     // Imprimir cabeçalhos
-    cout << left << setw(larguraColuna) << "Nome do Personagem";
-    cout << left << setw(larguraColuna) << "Pontos de Vida (PV)";
+    cout << left << setw(larguraColuna) << "Nome do Personagem 1";
+    cout << left << setw(larguraColuna) << "Arquetipo";
+    cout  << setw(larguraColuna) << "Pontos de Vida (PV)";
+    cout << left << setw(larguraColuna) << "Pontos de Ataque (PA)";
+    cout << left << setw(larguraColuna) << "Pontos de Defesa (PD)";
+    cout << left << setw(larguraColuna) << "Dano Total Causado";
     cout << endl;
-
-    // Imprimir estatísticas do primeiro personagem
+ 
     cout << left << setw(larguraColuna) << personagem1->getNome();
+    cout << left << setw(larguraColuna) << personagem1->getclasse();
     cout << left << setw(larguraColuna) << personagem1->getPV();
+    cout << left << setw(larguraColuna) << personagem1->getPA();
+    cout << left << setw(larguraColuna) << personagem1->getPD();
+   /*  cout << left << setw(larguraColuna) << personagem2->getDT2(); */
+    cout << endl;
+   cout << "\n"<<string(60, '-') <<endl;
+    cout << left << setw(larguraColuna) << "Nome do Personagem 2";
+    cout << left << setw(larguraColuna) << "Arquetipo";
+    cout  << setw(larguraColuna) << "Pontos de Vida (PV)";
+    cout << left << setw(larguraColuna) << "Pontos de Ataque (PA)";
+    cout << left << setw(larguraColuna) << "Pontos de Defesa (PD)";
+    cout << left << setw(larguraColuna) << "Dano Total Causado";
     cout << endl;
 
     // Imprimir estatísticas do segundo personagem
     cout << left << setw(larguraColuna) << personagem2->getNome();
+    cout << left << setw(larguraColuna) << personagem2->getclasse();
     cout << left << setw(larguraColuna) << personagem2->getPV();
-    cout << endl;
+    cout << left << setw(larguraColuna) << personagem2->getPA();
+    cout << left << setw(larguraColuna) << personagem2->getPD();
+   /*  cout << left << setw(larguraColuna) << personagem2->getDT2(); */
+    
     cout << "+---------------------+---------------+---------------------+" <<endl;
 
 }
