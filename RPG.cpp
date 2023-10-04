@@ -163,50 +163,69 @@ public:
 
         exibirEstatisticasCombate(personagem1, personagem2);
     }
+void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
+    cout << "\n" << string(60, '-') << endl;
+    cout << "\t\tEstatísticas do Combate:" << endl;
 
-    void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2) {
-        cout << "\n" << string(60, '-') << endl;
-        cout << "\t\tEstatísticas do Combate:" << endl;
+    int larguraColuna = 30;
+    cout << string(60, '-') << endl;
 
-        int larguraColuna = 30;
-        cout << string(60, '-') << endl;
+    // Tabela para o Personagem 1
+    cout << left << setw(larguraColuna) << "Nome do Personagem 1:";
+    cout << left << setw(larguraColuna) << "Arquétipo:";
+    cout << endl;
 
-        cout << left << setw(larguraColuna) << "Nome do Personagem 1";
-        cout << left << setw(larguraColuna) << "Arquetipo";
-        cout << setw(larguraColuna) << "Pontos de Vida (PV)";
-        cout << left << setw(larguraColuna) << "Pontos de Ataque (PA)";
-        cout << left << setw(larguraColuna) << "Pontos de Defesa (PD)";
-        cout << left << setw(larguraColuna) << "Dano Total Causado";
-        cout << endl;
+    cout << left << setw(larguraColuna) << personagem1->getNome();
+    cout << left << setw(larguraColuna) << personagem1->getClasse();
+    cout << endl;
 
-        cout << left << setw(larguraColuna) << personagem1->getNome();
-        cout << left << setw(larguraColuna) << personagem1->getClasse();
-        cout << left << setw(larguraColuna) << personagem1->getPV();
-        cout << left << setw(larguraColuna) << personagem1->getPA();
-        cout << left << setw(larguraColuna) << personagem1->getPD();
-        cout << left << setw(larguraColuna) << personagem1->getDanoTotalCausado();
-        cout << endl;
+    cout << setw(larguraColuna) << "PV:";
+    cout << left << setw(larguraColuna) << "PA:";
+    cout << endl;
+    cout << left << setw(larguraColuna) << personagem1->getPV();
+    cout << left << setw(larguraColuna) << personagem1->getPA();
+    cout << endl;
 
-        cout << "\n" << string(60, '-') << endl;
 
-        cout << left << setw(larguraColuna) << "Nome do Personagem 2";
-        cout << left << setw(larguraColuna) << "Arquetipo";
-        cout << setw(larguraColuna) << "Pontos de Vida (PV)";
-        cout << left << setw(larguraColuna) << "Pontos de Ataque (PA)";
-        cout << left << setw(larguraColuna) << "Pontos de Defesa (PD)";
-        cout << left << setw(larguraColuna) << "Dano Total Causado";
-        cout << endl;
 
-        cout << left << setw(larguraColuna) << personagem2->getNome();
-        cout << left << setw(larguraColuna) << personagem2->getClasse();
-        cout << left << setw(larguraColuna) << personagem2->getPV();
-        cout << left << setw(larguraColuna) << personagem2->getPA();
-        cout << left << setw(larguraColuna) << personagem2->getPD();
-        cout << left << setw(larguraColuna) << personagem2->getDanoTotalCausado();
-        cout << endl;
+    cout << setw(larguraColuna) << "PD:";
+     cout <<  left <<setw(larguraColuna) << "Dano Total:";
+    cout << endl;
+    cout << left << setw(larguraColuna) << personagem1->getPD();
+    cout << left << setw(larguraColuna) << personagem1->getDanoTotalCausado();
+    cout << endl;
+ cout << string(60, '-') << endl;
+       // Tabela para o Personagem 2 
+    cout << left << setw(larguraColuna) << "Nome do Personagem 2:";
+    cout << left << setw(larguraColuna) << "Arquétipo:";
+    cout << endl;
 
-        cout << "+---------------------+---------------+---------------------+" << endl;
-    }
+    cout << left << setw(larguraColuna) << personagem2->getNome();
+    cout << left << setw(larguraColuna) << personagem2->getClasse();
+    cout << endl;
+
+    cout << setw(larguraColuna) << "PV:";
+    cout << left << setw(larguraColuna) << "PA:";
+    cout << endl;
+    cout << left << setw(larguraColuna) << personagem2->getPV();
+    cout << left << setw(larguraColuna) << personagem2->getPA();
+    cout << endl;
+
+
+
+    cout << setw(larguraColuna) << "PD:";
+     cout <<  left <<setw(larguraColuna) << "Dano Total:";
+    cout << endl;
+    cout << left << setw(larguraColuna) << personagem2->getPD();
+    cout << left << setw(larguraColuna) << personagem2->getDanoTotalCausado();
+    cout << endl;
+
+    cout << "--------------------------------------------------------------" << endl;
+}
+
+
+
+
 };
 
 class Bruxo : public Personagem {
