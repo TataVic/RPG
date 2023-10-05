@@ -1,3 +1,4 @@
+//Bianca, Ryhan e Tauani
 #include<iostream>
 #include<iomanip>
 #include <string>
@@ -44,24 +45,13 @@ public:
         return pv;
     }
 
-    void setPV(int PontoVida) {
-        pv = PontoVida;
-    }
 
     int getPA() const {
         return pa;
     }
 
-    void setPA(int PontoAtaque) {
-        pa = PontoAtaque;
-    }
-
     int getPD() const {
         return pd;
-    }
-
-    void setPD(int PontoDefesa) {
-        pd = PontoDefesa;
     }
 
     void adicionarDerrotado(Personagem* derrotado) {
