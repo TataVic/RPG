@@ -11,7 +11,7 @@ using namespace std;
 class Personagem {
 protected:
     string nome, classe;
-    int pv, pa, pd;
+    int pv, pa, pd, pvOriginal, paOriginal;
     int danoTotalCausado;
     vector<Personagem*> derrotados;
 
@@ -22,7 +22,7 @@ protected:
 
 public:
     Personagem(const string& nome, const string& classe, int pv, int pa, int pd)
-        : nome(gerarNomeAleatorio()), classe(classe), pv(pv), pa(pa), pd(pd), danoTotalCausado(0) {}
+        : nome(gerarNomeAleatorio()), classe(classe), pv(pv), pa(pa), pd(pd), danoTotalCausado(0), pvOriginal(pv), paOriginal(pa) {}
 
     void receberDano(int dano) {
         if (dano > 0) {
@@ -32,6 +32,11 @@ public:
             }
         }
     }
+
+    void resetarAtributos() {
+    pv = pvOriginal;
+    pa = paOriginal;
+}
 
     string getNome() const {
         return nome;
@@ -118,9 +123,6 @@ public:
             else {
                 cout << "O ataque de " << personagem2->getNome() << " não causou dano a " << personagem1->getNome() << "." << endl;
             }
-
-            cout << "-------Vida restante de " << personagem1->getNome() << ": " << personagem1->getPV() << " pontos de vida." << endl;
-            cout << "-------Vida restante de " << personagem2->getNome() << ": " << personagem2->getPV() << " pontos de vida." << endl;
 
             if (rounds == 10 || personagem1->getPV() <= 0 || personagem2->getPV() <= 0) {
                 cout << "\n\t\tO combate terminou!\n" << endl;
@@ -361,26 +363,78 @@ int main() {
 
     JogoRPG jogoRPG;
 
-    Bruxo bruxo;
-    Clerigo clerigo;
-    Clerigo clarigo2;
-    Ladino ladino;
-    Guerreiro guerreiro;
-    Mago mago;
-    Druida druida;
+    Bruxo bruxo1, bruxo2, bruxo3;
+    Clerigo clerigo1, clerigo2;
+    Ladino ladino1, ladino2, ladino3;
+    Guerreiro guerreiro1, guerreiro2, guerreiro3;
+    Mago mago1, mago2, mago3;
+    Druida druida1, druida2;
 
-
-
-    jogoRPG.adicionarPersonagem(&bruxo);
-    jogoRPG.adicionarPersonagem(&clerigo);
-    jogoRPG.adicionarPersonagem(&ladino);
-    jogoRPG.adicionarPersonagem(&guerreiro);
-    jogoRPG.adicionarPersonagem(&mago);
-    jogoRPG.adicionarPersonagem(&druida);
+    jogoRPG.adicionarPersonagem(&bruxo1);
+    jogoRPG.adicionarPersonagem(&bruxo2);
+    jogoRPG.adicionarPersonagem(&bruxo3);
+    jogoRPG.adicionarPersonagem(&clerigo1);
+    jogoRPG.adicionarPersonagem(&clerigo2);
+    jogoRPG.adicionarPersonagem(&ladino1);
+    jogoRPG.adicionarPersonagem(&ladino2);
+    jogoRPG.adicionarPersonagem(&ladino3);
+    jogoRPG.adicionarPersonagem(&guerreiro1);
+    jogoRPG.adicionarPersonagem(&guerreiro2);
+    jogoRPG.adicionarPersonagem(&guerreiro3);
+    jogoRPG.adicionarPersonagem(&mago1);
+    jogoRPG.adicionarPersonagem(&mago2);
+    jogoRPG.adicionarPersonagem(&mago3);
+    jogoRPG.adicionarPersonagem(&druida1);
+    jogoRPG.adicionarPersonagem(&druida2);
 
     jogoRPG.listarPersonagens();
 
-    jogoRPG.iniciarCombate(&clarigo2, &clerigo);
+    // Adicionando os personagens ao vetor
+    vector<Personagem*> participantes = {
+        &bruxo1, &bruxo2, &bruxo3,
+        &clerigo1, &clerigo2,
+        &ladino1, &ladino2, &ladino3,
+        &guerreiro1, &guerreiro2, &guerreiro3,
+        &mago1, &mago2, &mago3,
+        &druida1, &druida2
+    };
+
+    // Fase de combates
+    int fase = 1;
+
+    while (participantes.size() > 1) {
+        cout << "\n------ Fase " << fase << " ------" << endl;
+        for (Personagem* participante : participantes) {
+        participante->resetarAtributos();
+        }
+        vector<Personagem*> vencedores;
+
+    for (int i = 0; i < participantes.size(); i += 2) {
+        cout << "\nCombate: " << participantes[i]->getNome() << " vs " << participantes[i + 1]->getNome() << endl;
+        jogoRPG.iniciarCombate(participantes[i], participantes[i + 1]);
+
+        participantes[i]->resetarAtributos();
+        participantes[i + 1]->resetarAtributos();
+
+        if (participantes[i]->getPV() > 0) {
+            vencedores.push_back(participantes[i]);
+        } else {
+            vencedores.push_back(participantes[i + 1]);
+        }
+    }
+
+    // Atualizando participantes para a próxima fase  
+    participantes.clear();
+    for (Personagem* vencedor : vencedores) {
+        vencedor->resetarAtributos();
+        participantes.push_back(vencedor);
+    }
+        fase++;
+    }
+
+    // Exibindo o vencedor final
+    cout << "\n------ VENCEDOR FINAL ------\n";
+    cout << "O grande vencedor é: " << participantes[0]->getNome() << "!\n";
 
     return 0;
 }
