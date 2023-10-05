@@ -128,28 +128,45 @@ public:
             }
         }
 
-        if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
-            personagem2->adicionarDerrotado(personagem1);
-            cout << "\t\t" << personagem2->getNome() << " venceu!" << endl;
-        }
-        else if (personagem2->getPV() <= 0 && personagem1->getPV() > 0) {
-            personagem1->adicionarDerrotado(personagem2);
+        int danoTotalPersonagem1 = personagem1->getDanoTotalCausado();
+        int danoTotalPersonagem2 = personagem2->getDanoTotalCausado();
+
+if (rounds == 10 || personagem1->getPV() <= 0 || personagem2->getPV() <= 0) {
+}
+
+if (personagem1->getPV() <= 0 && personagem2->getPV() > 0) {
+    personagem2->adicionarDerrotado(personagem1);
+    cout << "\t\t" << personagem2->getNome() << " venceu!" << endl;
+}
+else if (personagem2->getPV() <= 0 && personagem1->getPV() > 0) {
+    personagem1->adicionarDerrotado(personagem2);
+    cout << "\t\t" << personagem1->getNome() << " venceu!" << endl;
+}
+else {
+    int ataquePersonagem1 = personagem1->getPA();
+    int ataquePersonagem2 = personagem2->getPA();
+    int vidaPersonagem1 = personagem1->getPV();
+    int vidaPersonagem2 = personagem2->getPV();
+
+    if (ataquePersonagem1 > ataquePersonagem2) {
+        cout << "\t\t" << personagem1->getNome() << " venceu!" << endl;
+    }
+    else if (ataquePersonagem2 > ataquePersonagem1) {
+        cout << "\t\t" << personagem2->getNome() << " venceu!" << endl;
+    }
+    else {
+        // Em caso de empate no ataque, ganha quem tiver mais vida
+        if (vidaPersonagem1 > vidaPersonagem2) {
             cout << "\t\t" << personagem1->getNome() << " venceu!" << endl;
         }
-        else {
-            int danoTotalPersonagem1 = personagem1->getDanoTotalCausado();
-            int danoTotalPersonagem2 = personagem2->getDanoTotalCausado();
-
-            if (danoTotalPersonagem1 > danoTotalPersonagem2 && personagem1->getPV() == 0 && personagem2->getPV() == 0) {
-                cout << "\t\t" << personagem1->getNome() << " é o vencedor com mais danos causados!" << " com ataque:" << personagem1->getPA() << endl;
-            }
-            else if (danoTotalPersonagem2 > danoTotalPersonagem1 && personagem1->getPV() == 0 && personagem2->getPV() == 0) {
-                cout << "\t\t" << personagem2->getNome() << " é o vencedor com mais danos causados!" << endl;
-            }
-            else {
-                cout << "\t" << "O combate terminou em empate, sem vencedor!" << endl;
-            }
+        else if (vidaPersonagem2 > vidaPersonagem1) {
+            cout << "\t\t" << personagem2->getNome() << " venceu!" << endl;
         }
+        else {
+            cout << "\t" << "O combate terminou em empate, sem vencedor!" << endl;
+        }
+    }
+}
 
         exibirEstatisticasCombate(personagem1, personagem2);
     }
@@ -342,10 +359,13 @@ int main() {
 
     Bruxo bruxo;
     Clerigo clerigo;
+    Clerigo clarigo2;
     Ladino ladino;
     Guerreiro guerreiro;
     Mago mago;
     Druida druida;
+
+
 
     jogoRPG.adicionarPersonagem(&bruxo);
     jogoRPG.adicionarPersonagem(&clerigo);
@@ -356,7 +376,7 @@ int main() {
 
     jogoRPG.listarPersonagens();
 
-    jogoRPG.iniciarCombate(&bruxo, &clerigo);
+    jogoRPG.iniciarCombate(&clarigo2, &clerigo);
 
     return 0;
 }
