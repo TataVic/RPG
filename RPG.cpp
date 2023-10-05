@@ -216,6 +216,7 @@ void exibirEstatisticasCombate(Personagem* personagem1, Personagem* personagem2)
 };
 
 class Bruxo : public Personagem { //causar dano e se curar com metade desse dano causado
+//Drenagem vital - ataca e se cura e causa sangramento
 public:
     Bruxo()
         : Personagem(gerarNomeAleatorio(), "Bruxo", gerarPV(), gerarPA(), gerarPD()) {}
@@ -235,6 +236,7 @@ private:
 };
 
 class Mago : public Personagem { // causar dano alto (maior que o bruxo pra compensar que ele nao se cura)
+//Explosão arcana - explosão de dano
 public:
     Mago()
         : Personagem(gerarNomeAleatorio(), "Mago", gerarPV(), gerarPA(), gerarPD()) {}
@@ -254,6 +256,7 @@ private:
 };
 
 class Guerreiro : public Personagem { // aumenta os atributos de ataque e vida
+//Frenesi de batalha - aumenta seus atributos de ataque e defesa
 public:
     Guerreiro()
         : Personagem(gerarNomeAleatorio(), "Guerreiro", gerarPV(), gerarPA(), gerarPD()) {}
@@ -273,6 +276,7 @@ private:
 };
 
 class Druida : public Personagem { // ganha escudo
+//ataque elemental - ataque com mais chance de sangramento
 public:
     Druida()
         : Personagem(gerarNomeAleatorio(), "Druida", gerarPV(), gerarPA(), gerarPD()) {}
@@ -292,6 +296,7 @@ private:
 };
 
 class Clerigo : public Personagem { // se cura
+//Ascensão celestial - cura em si
 public:
     Clerigo()
         : Personagem(gerarNomeAleatorio(), "Clerigo", gerarPV(), gerarPA(), gerarPD()) {}
@@ -311,6 +316,7 @@ private:
 };
 
 class Ladino : public Personagem { // causa dano alto e tem chance de causar sangramento
+ //Sombra mortal - dano massivo e sangramento
 public:
     Ladino()
         : Personagem(gerarNomeAleatorio(), "Ladino", gerarPV(), gerarPA(), gerarPD()) {}
