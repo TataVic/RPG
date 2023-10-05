@@ -150,17 +150,21 @@ else {
 
     if (ataquePersonagem1 > ataquePersonagem2) {
         cout << "\t\t" << personagem1->getNome() << " venceu!" << endl;
+        personagem1->adicionarDerrotado(personagem2);
     }
     else if (ataquePersonagem2 > ataquePersonagem1) {
         cout << "\t\t" << personagem2->getNome() << " venceu!" << endl;
+        personagem2->adicionarDerrotado(personagem1);
     }
     else {
         // Em caso de empate no ataque, ganha quem tiver mais vida
         if (vidaPersonagem1 > vidaPersonagem2) {
             cout << "\t\t" << personagem1->getNome() << " venceu!" << endl;
+            personagem1->adicionarDerrotado(personagem2);
         }
         else if (vidaPersonagem2 > vidaPersonagem1) {
             cout << "\t\t" << personagem2->getNome() << " venceu!" << endl;
+            personagem2->adicionarDerrotado(personagem1);
         }
         else {
             cout << "\t" << "O combate terminou em empate, sem vencedor!" << endl;
