@@ -1,4 +1,4 @@
-# RPG - Jogo 
+# RPG - *Role-Playing Game* {Parte 1}
 ### Trio de desenvolvimento: @Bianca Netto, @Ryhan Clayver e @Tauani Vitória. 
 Jogo de RPG em C++, para a matéria de Programação Orientada a Objetos, utilizando os paradigmas de Orientação a Objetos.
 > [!NOTE]
